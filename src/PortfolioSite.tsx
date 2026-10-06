@@ -401,7 +401,7 @@ function HomePage({ navigate, reducedMotion }: { navigate: (path: string) => voi
       <section className="mb-16 sm:mb-20">
         <SectionHeading title="Education" />
         <Reveal className="grid gap-2 border-y border-dashed border-gray-200 py-5 sm:grid-cols-[150px_1fr] sm:gap-7 dark:border-gray-800">
-          <p className="text-xs font-medium text-gray-400">2024 — Present</p>
+          <p className="text-xs font-medium text-gray-400">2026 — Present</p>
           <div>
             <h3 className="text-sm font-semibold text-gray-900 dark:text-white">Digital Marketing &amp; Product Strategy</h3>
             <p className="mt-1 text-sm text-gray-500 dark:text-gray-400">TOP Computer Academy (Remote)</p>
