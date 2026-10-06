@@ -1,0 +1,112 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer theme {
+  :root, :host {
+    --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    --color-gray-900: oklch(21% .034 264.665);
+    --color-white: #fff;
+    --default-font-family: var(--font-sans);
+  }
+}
+
+:root {
+  --theme-x: 50%;
+  --theme-y: 50%;
+  --transition-origin-x: 50vw;
+  --transition-origin-y: 50vh;
+}
+
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation: none;
+  mix-blend-mode: normal;
+}
+
+::view-transition-old(root) {
+  animation: circle-out 0.7s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+::view-transition-new(root) {
+  animation: circle-in 0.7s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+@keyframes circle-out {
+  from {
+    clip-path: circle(150vmax at var(--transition-origin-x) var(--transition-origin-y));
+    opacity: 1;
+  }
+  to {
+    clip-path: circle(0 at var(--transition-origin-x) var(--transition-origin-y));
+    opacity: 0.2;
+  }
+}
+
+@keyframes circle-in {
+  from {
+    clip-path: circle(0 at var(--transition-origin-x) var(--transition-origin-y));
+    opacity: 0.2;
+  }
+  to {
+    clip-path: circle(150vmax at var(--transition-origin-x) var(--transition-origin-y));
+    opacity: 1;
+  }
+}
+
+/* Fallback для браузеров без View Transition API */
+.theme-transition {
+  transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Пользовательские анимации */
+@keyframes slideUpFade {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-slide-up {
+  opacity: 0;
+  animation: slideUpFade 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.delay-100 { animation-delay: 100ms; }
+.delay-200 { animation-delay: 200ms; }
+.delay-300 { animation-delay: 300ms; }
+.delay-400 { animation-delay: 400ms; }
+
+/* Плавные анимации для всех интерактивных элементов */
+* {
+  @apply transition-colors duration-300;
+}
+
+.card-spotlight {
+  isolation: isolate;
+  --spotlight-color: #ffffff40;
+  position: relative;
+  overflow: hidden;
+}
+
+.card-spotlight__overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  opacity: 0;
+  background: radial-gradient(circle at var(--mouse-x) var(--mouse-y), var(--spotlight-color), transparent 72%);
+  transition: opacity 350ms;
+}
+
+.card-spotlight:focus-within .card-spotlight__overlay {
+  opacity: 1;
+}
+
+.card-spotlight > * {
+  position: relative;
+  z-index: 2;
+}
+
+.card-spotlight > .card-spotlight__overlay {
+  position: absolute;
+  z-index: 1;
+}
