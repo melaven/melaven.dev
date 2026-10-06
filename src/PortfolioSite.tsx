@@ -351,7 +351,7 @@ function HomePage({ navigate, reducedMotion }: { navigate: (path: string) => voi
       </section>
 
       <section className="mb-16 sm:mb-20">
-        <SectionHeading title="Experience" href="/experience" linkLabel="View details" />
+        <SectionHeading title="Experience" />
         <ExperienceList />
       </section>
 
